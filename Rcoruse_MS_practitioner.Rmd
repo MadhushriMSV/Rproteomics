@@ -1,0 +1,49 @@
+---
+title: "R for proteomics 2021 "
+output: html_notebook
+---
+May 10, 2021, 11:00am-2:15pm Tutorial, Kylie Bemis: Intermediate R crash course for MS practitioners
+
+Speaker: Kylie Bemis
+
+Teaching assistants: Sai Srikanth Lakkimsetty, Sara Taheri
+
+May Institute’s Intermediate R crash course will instruct R users who are already proficient in the basics of R programming, have practice writing their own R scripts, and would like to make the leap to become more productive in developing reusable R code. We will be using the RStudio Integrated Development Environment (IDE) application (free, open source) to work with R code and examples. The course will be relatively fast-paced, and lectures will cover a variety of intermediate R topics with hands-on examples. Students are expected to be familiar with topics covered in May Institute’s Introduction to R for Beginners course, and it will be assumed that most will already have practice with R outside of the program. The topics covered will be widely-applicable to R programming, but a basic mass spectrometry background will be assumed for some of the hands-on examples.
+
+Topics will include:
+
+Reproducible research with R Markdown, Git, and Github
+Functions and functional programming in R
+Object-oriented programming with S3 and S4
+Profiling and debugging R code
+Writing scalable code with R/Bioconductor
+
+An example of previous year’s material can be found here:
+https://github.com/kuwisdelu/MayInstitute2020-IntermediateR
+
+System requirements: R >= 4.0, Bioconductor >= 3.12
+Install required packages for Intermediate R course section from CRAN and Bioconductor:
+
+```{r}
+required_packages_CRAN <- c("ggplot2", "tidyverse", "pryr", "microbenchmark",
+                            "roxygen2", "RUnit", "testthat", "BiocManager")
+required_packages_BioC <- c("MSnbase", "MSstats", "Cardinal", "matter", "HDF5Array")
+
+install.packages(required_packages_CRAN)
+
+BiocManager::install(required_packages_BioC)
+```
+Test whether all required packages are installed:
+```{r}
+required_packages <- c(required_packages_CRAN, required_packages_BioC)
+installed_packages <- required_packages %in% installed.packages()[,"Package"]
+missing_packages <- required_packages[!installed_packages]
+
+if ( length(missing_packages) > 0 ) {
+	warning(sprintf('FOLLOWING PACKAGES NEED TO BE INSTALLED STILL:\n\t%s\n',
+		paste(missing_packages, collapse=', ')))
+} else{
+	message('ALL PACKAGES ARE INSTALLED, WE\'RE GOOD TO GO!\n')
+}
+```
+
